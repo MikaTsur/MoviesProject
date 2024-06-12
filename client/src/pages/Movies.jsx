@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
+
 import axios from "axios";
 
 const MOVE_URL = "http://localhost:3011/movies";
@@ -16,7 +18,7 @@ const Movies = () => {
 
   return (
     <>
-      <h3>Movies Page</h3>
+      <h3>Movies</h3>
       <table border="1">
         <thead>
           <tr>
