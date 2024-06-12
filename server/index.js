@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const connectDB = require("./configs/db");
 
-const customersController = require("./controllers/customersController");
+const moviesController = require("./controllers/moviesController");
 const productsController = require("./controllers/productsController");
 
 const app = express();
@@ -15,7 +15,7 @@ app.use(cors());
 
 app.use(express.json());
 
-app.use("/customers", customersController);
+app.use("/movies", moviesController);
 app.use("/products", productsController);
 /*app.use("/movies", moviesController);*/
 

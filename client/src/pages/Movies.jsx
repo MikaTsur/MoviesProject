@@ -1,22 +1,22 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const CUST_URL = "http://localhost:3011/customers";
+const MOVE_URL = "http://localhost:3011/movies";
 
-const Customers = () => {
-  const [customers, setCustomers] = useState([]);
+const Movies = () => {
+  const [movies, setMovies] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get(CUST_URL);
-      setCustomers(data);
+      const { data } = await axios.get(MOVE_URL);
+      setMovies(data);
     };
     fetchData();
   }, []);
 
   return (
     <>
-      <h3>Customers Page</h3>
+      <h3>Movies Page</h3>
       <table border="1">
         <thead>
           <tr>
@@ -26,12 +26,12 @@ const Customers = () => {
           </tr>
         </thead>
         <tbody>
-          {customers.map((cust, index) => {
+          {movies.map((move, index) => {
             return (
               <tr key={index}>
-                <td>{cust.name}</td>
-                <td>{cust.email}</td>
-                <td>{cust.city}</td>
+                <td>{move.name}</td>
+                <td>{move.email}</td>
+                <td>{move.city}</td>
               </tr>
             );
           })}
@@ -41,4 +41,4 @@ const Customers = () => {
   );
 };
 
-export default Customers;
+export default Movies;
