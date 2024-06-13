@@ -1,23 +1,48 @@
 const mongoose = require("mongoose");
 
-const connectDB = () => {
-  // Connect to the products database
-  mongoose
-    .connect("mongodb://127.0.0.1:27017/productsDB", {
+// Function to connect to the products database
+const connectProductsDB = () => {
+  const productsDB = mongoose.createConnection(
+    "mongodb://127.0.0.1:27017/productsDB",
+    {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-    })
-    .then(() => console.log("Connected to productsDB"))
-    .catch((error) => console.log(error));
+    }
+  );
 
-  // Connect to the movies database
-  mongoose
-    .connect("mongodb://127.0.0.1:27017/moviesDB", {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    })
-    .then(() => console.log("Connected to moviesDB"))
-    .catch((error) => console.log(error));
+  productsDB.on("connected", () => {
+    console.log("Connected to productsDB");
+  });
+
+  productsDB.on("error", (error) => {
+    console.log("Error connecting to productsDB:", error);
+  });
+
+  return productsDB;
 };
 
-module.exports = connectDB;
+// Function to connect to the movies database
+const connectMoviesDB = () => {
+  const moviesDB = mongoose.createConnection(
+    "mongodb://127.0.0.1:27017/moviesDB",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  );
+
+  moviesDB.on("connected", () => {
+    console.log("Connected to moviesDB");
+  });
+
+  moviesDB.on("error", (error) => {
+    console.log("Error connecting to moviesDB:", error);
+  });
+
+  return moviesDB;
+};
+
+module.exports = {
+  connectProductsDB,
+  connectMoviesDB,
+};
