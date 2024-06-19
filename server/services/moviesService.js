@@ -1,7 +1,7 @@
-const usersRepo = require("../repositories/moviesRepo");
+const moviesRepo = require("../repositories/moviesRepo");
 
 const getAllMovies = async () => {
-  let { data: movies } = await usersRepo.getAllMovies();
+  let { data: movies } = await moviesRepo.getAllMovies();
 
   //table
 
