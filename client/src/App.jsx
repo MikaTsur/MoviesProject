@@ -1,6 +1,5 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Movies from "./pages/Movies";
-import Products from "./pages/Products";
 
 const App = () => {
   const navigate = useNavigate();
@@ -10,14 +9,12 @@ const App = () => {
       <div style={{ display: "flex", gap: "10px" }}>
         <button onClick={() => navigate("/movies")}>Movies</button>
         <br />
-        <button onClick={() => navigate("/products")}>Products Page</button>
         <br />
         <br />
       </div>
       <Routes>
         <Route path="/" element={<h1>E-commerce</h1>} />
         <Route path="/movies" element={<Movies />} />
-        <Route path="/products" element={<Products />} />
       </Routes>
     </>
   );

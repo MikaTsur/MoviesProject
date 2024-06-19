@@ -15,4 +15,16 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Create
+
+router.post("/", async (req, res) => {
+  try {
+    const obj = req.body;
+    const result = await movesService.addMovie(obj);
+    res.status(201).send(result);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
 module.exports = router;

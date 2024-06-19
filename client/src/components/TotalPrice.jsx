@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 
 const TotalPrice = () => {
-  const products = useSelector((state) => state.products);
+  const movies = useSelector((state) => state.movies);
 
   return (
     <div
@@ -13,7 +13,7 @@ const TotalPrice = () => {
         textAlign: "center",
       }}
     >
-      Total Price: {products.reduce((acc, prod) => acc + prod.price, 0)}
+      Total Price: {movies.reduce((acc, move) => acc + move.price, 0)}
     </div>
   );
 };

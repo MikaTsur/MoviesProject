@@ -22,11 +22,12 @@ const MoviesList = () => {
         textAlign: "center",
       }}
     >
-      <h3>All Movies</h3>
+      <h3>Movie name</h3>
       {movies.map((move) => {
         return <Movie key={move.serialNo} movie={move} />;
       })}
-      <button onClick={makeOrder}>Approve Order</button>
+      <button onClick={makeOrder}>Edit</button>
+      <button onClick={makeOrder}>Delete</button>
     </div>
   );
 };

@@ -1,10 +1,4 @@
-const doAddProduct = (product) => {
-  return { type: "ADD", payload: product };
-};
-
-const doRemoveProduct = (serialNo) => {
-  return { type: "REMOVE", payload: serialNo };
-};
+//C:\Users\morellyo\react_project\ex\client\src\redux\actions.js
 
 const doRemoveMovie = (serialNo) => {
   return { type: "REMOVE", payload: serialNo };
@@ -14,4 +8,4 @@ const doAddMovie = (movie) => {
   return { type: "ADD", payload: movie };
 };
 
-export { doAddProduct, doRemoveProduct, doRemoveMovie, doAddMovie };
+export { doRemoveMovie, doAddMovie };

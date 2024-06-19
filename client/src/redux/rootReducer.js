@@ -1,23 +1,24 @@
-import { v4 as uuidv4 } from 'uuid';
+//C:\Users\morellyo\react_project\ex\client\src\redux\rootReducer.js
+import { v4 as uuidv4 } from "uuid";
 
 const initialState = {
-  products: [],
+  movies: [],
 };
 
-const productsReducer = (state = initialState, action) => {
+const moviesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD': {
+    case "ADD": {
       return {
         ...state,
-        products: [...state.products, { ...action.payload }],
+        movies: [...state.movies, { ...action.payload }],
       };
     }
 
-    case 'REMOVE': {
-      const products = state.products.filter(
-        (prod) => prod.serialNo !== action.payload
+    case "REMOVE": {
+      const movies = state.movies.filter(
+        (move) => move.serialNo !== action.payload
       );
-      return { ...state, products };
+      return { ...state, movies };
     }
 
     default:
@@ -25,4 +26,4 @@ const productsReducer = (state = initialState, action) => {
   }
 };
 
-export default productsReducer;
+export default moviesReducer;

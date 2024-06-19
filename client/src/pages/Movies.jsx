@@ -1,7 +1,7 @@
+//ex\client\src\pages\Movies.jsx
 import { useState, useEffect } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
-
 import axios from "axios";
+import MoviesList from "../components/MoviesList";
 
 const MOVE_URL = "http://localhost:3011/movies";
 
@@ -23,8 +23,7 @@ const Movies = () => {
         <thead>
           <tr>
             <th>Name</th>
-            <th>Email</th>
-            <th>City</th>
+            <th>Genres</th>
           </tr>
         </thead>
         <tbody>
@@ -33,12 +32,16 @@ const Movies = () => {
               <tr key={index}>
                 <td>{move.name}</td>
                 <td>{move.email}</td>
-                <td>{move.city}</td>
               </tr>
             );
           })}
         </tbody>
       </table>
+      <br />
+      <br />
+      <div style={{ width: "50%", float: "left" }}>
+        <MoviesList />
+      </div>
     </>
   );
 };
