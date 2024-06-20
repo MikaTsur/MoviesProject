@@ -7,12 +7,6 @@ const MOVES_URL = "http://localhost:3011/movies";
 const MoviesList = () => {
   const movies = useSelector((state) => state.movies);
 
-  // const makeOrder = () => {
-  //   movies.forEach((move) => {
-  //     axios.post(MOVES_URL, move);
-  //   });
-  // };
-
   return (
     <div
       style={{

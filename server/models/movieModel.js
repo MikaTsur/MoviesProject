@@ -5,9 +5,10 @@ const mongoose = require("mongoose");
 const movieSchema = new mongoose.Schema(
   {
     name: String,
+    year: Date,
     genres: String,
     image: String,
-    premierd: Date,
+    //premierd: Date,
   },
   { versionKey: false }
 );

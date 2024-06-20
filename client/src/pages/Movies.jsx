@@ -23,7 +23,9 @@ const Movies = () => {
         <thead>
           <tr>
             <th>Name</th>
+            <th>Year</th>
             <th>Genres</th>
+            <th>Image</th>
           </tr>
         </thead>
         <tbody>
@@ -31,7 +33,9 @@ const Movies = () => {
             return (
               <tr key={index}>
                 <td>{move.name}</td>
-                <td>{move.email}</td>
+                <td>{move.year}</td>
+                <td>{move.genres}</td>
+                <td>{move.image}</td>
               </tr>
             );
           })}
