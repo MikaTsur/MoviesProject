@@ -42,6 +42,8 @@ const Movies = () => {
       <div style={{ width: "50%", float: "left" }}>
         <MoviesList />
       </div>
+      <br />
+      <br />
     </>
   );
 };

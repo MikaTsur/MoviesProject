@@ -5,25 +5,25 @@ const router = express.Router();
 
 // Entry Point: http://localhost:3000/movies
 
-// Get All movies
+// Get All movies (from tvmaze)
+
 router.get("/", async (req, res) => {
   try {
-    const movies = await moviesService.getAllMovies();
+    const movies = await moviesService.getMovies2();
     res.send(movies);
   } catch (error) {
-    res.send(error);
+    res.status(500).send(error);
   }
 });
 
-// Create
-
+// Create movie
 router.post("/", async (req, res) => {
   try {
     const obj = req.body;
-    const result = await movesService.addMovie(obj);
+    const result = await moviesService.addMovie(obj); // assuming addMovie method exists
     res.status(201).send(result);
   } catch (error) {
-    res.send(error);
+    res.status(500).send(error);
   }
 });
 

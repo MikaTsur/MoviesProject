@@ -1,9 +1,10 @@
+//C:\Users\morellyo\react_project\ex\server\repositories\moviesRepo.js
 const axios = require("axios");
 
-const USERS_URL = "https://jsonplaceholder.typicode.com/users";
+const MOVIES_URL = "https://api.tvmaze.com/shows";
 
-const getAllMovies = () => {
-  return axios.get(USERS_URL);
+const getMovies2 = () => {
+  return axios.get(MOVIES_URL);
 };
 
-module.exports = { getAllMovies };
+module.exports = { getMovies2 };

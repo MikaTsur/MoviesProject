@@ -1,19 +1,22 @@
+//C:\Users\morellyo\react_project\ex\server\services\moviesService.js
 const moviesRepo = require("../repositories/moviesRepo");
 
-const getAllMovies = async () => {
-  let { data: movies } = await moviesRepo.getAllMovies();
+const getMovies2 = async () => {
+  let { data: movies2 } = await moviesRepo.getMovies2();
 
-  //table
+  // Limit to 10 results
+  movies2 = movies2.slice(0, 10);
 
-  movies = movies.map((cust) => {
+  movies2 = movies2.map((movie) => {
     return {
-      name: cust.name,
-      email: cust.email,
-      city: cust.address.city,
+      name: movie.name,
+      year: new Date(movie.premiered).getFullYear(),
+      genres: movie.genres.join(", "),
+      image: movie.image ? movie.image.medium : null,
     };
   });
 
-  return movies;
+  return movies2;
 };
 
-module.exports = { getAllMovies };
+module.exports = { getMovies2 };

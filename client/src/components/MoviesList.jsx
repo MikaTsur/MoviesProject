@@ -1,17 +1,17 @@
 import { useSelector } from "react-redux";
 import axios from "axios";
-import Movie from "./Movie";
+// import Movie from "./Movie";
 
 const MOVES_URL = "http://localhost:3011/movies";
 
 const MoviesList = () => {
   const movies = useSelector((state) => state.movies);
 
-  const makeOrder = () => {
-    movies.forEach((move) => {
-      axios.post(MOVES_URL, move);
-    });
-  };
+  // const makeOrder = () => {
+  //   movies.forEach((move) => {
+  //     axios.post(MOVES_URL, move);
+  //   });
+  // };
 
   return (
     <div
@@ -22,12 +22,12 @@ const MoviesList = () => {
         textAlign: "center",
       }}
     >
-      <h3>Movie name</h3>
+      {/* <h3>Movie name</h3>
       {movies.map((move) => {
         return <Movie key={move.serialNo} movie={move} />;
       })}
       <button onClick={makeOrder}>Edit</button>
-      <button onClick={makeOrder}>Delete</button>
+      <button onClick={makeOrder}>Delete</button> */}
     </div>
   );
 };
