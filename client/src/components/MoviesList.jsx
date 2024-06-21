@@ -1,6 +1,6 @@
 // ex\client\src\components\MoviesList.jsx
 import { useSelector } from "react-redux";
-import MovieCard from "./Movie";
+import Movie from "./Movie";
 
 const MoviesList = () => {
   const movies = useSelector((state) => state.movies);
@@ -8,7 +8,7 @@ const MoviesList = () => {
   return (
     <div>
       {movies.map((movie, index) => (
-        <MovieCard key={index} movie={movie} />
+        <Movie key={index} movie={movie} />
       ))}
     </div>
   );

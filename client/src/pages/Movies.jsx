@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import MoviesList from "../components/MoviesList";
-import MovieCard from "../components/Movie";
+import Movie from "../components/Movie";
 
 const MOVE_URL = "http://localhost:3011/movies";
 
@@ -22,7 +22,7 @@ const Movies = () => {
       <h3>Movies</h3>
       <div>
         {movies.map((movie, index) => (
-          <MovieCard key={index} movie={movie} />
+          <Movie key={index} movie={movie} />
         ))}
       </div>
       <br />
