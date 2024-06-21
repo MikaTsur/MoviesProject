@@ -1,30 +1,31 @@
-// import { useDispatch } from "react-redux";
-// import { doRemoveMovie } from "../redux/actions";
+// ex\client\src\components\Movie.jsx
+const Movie = ({ movie }) => {
+  return (
+    <div
+      style={{
+        border: "1px solid black",
+        margin: "10px",
+        padding: "10px",
+      }}
+    >
+      <div>
+        <strong>Name:</strong> {movie.name}
+      </div>
+      <div>
+        <strong>Year:</strong> {movie.year}
+      </div>
+      <div>
+        <strong>Genres:</strong> {movie.genres}
+      </div>
+      <div>
+        <img
+          src={movie.image}
+          alt={movie.name}
+          style={{ width: "100px", height: "150px" }}
+        />
+      </div>
+    </div>
+  );
+};
 
-// const Movie = ({ movie }) => {
-//   const dispatch = useDispatch();
-
-//   return (
-//     <div
-//       style={{
-//         border: "3px solid green",
-//         width: "250px",
-//         height: "150px",
-//         padding: "10px",
-//         marginBottom: "10px",
-//         textAlign: "center",
-//       }}
-//     >
-//       <h4>Movie Data</h4>
-//       Serial No.: {movie.serialNo} <br />
-//       Name: {movie.name} <br />
-//       Price: {movie.price} <br />
-//       <br />
-//       <button onClick={() => dispatch(doRemoveMovie(movie.serialNo))}>
-//         Remove
-//       </button>
-//     </div>
-//   );
-// };
-
-// export default Movie;
+export default Movie;
