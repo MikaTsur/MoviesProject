@@ -8,20 +8,36 @@ const MoviesList = () => {
   const movies = useSelector((state) => state.movies);
 
   return (
-    <div
-      style={{
-        border: "3px solid blue",
-        width: "300px",
-        padding: "10px",
-        textAlign: "center",
-      }}
-    >
-      {/* <h3>Movie name</h3>
-      {movies.map((move) => {
-        return <Movie key={move.serialNo} movie={move} />;
+    <div>
+      {movies.map((move, index) => {
+        return (
+          <div
+            key={index}
+            style={{
+              border: "1px solid black",
+              margin: "10px",
+              padding: "10px",
+            }}
+          >
+            <div>
+              <strong>Name:</strong> {move.name}
+            </div>
+            <div>
+              <strong>Year:</strong> {move.year}
+            </div>
+            <div>
+              <strong>Genres:</strong> {move.genres}
+            </div>
+            <div>
+              <img
+                src={move.image}
+                alt={move.name}
+                style={{ width: "100px", height: "150px" }}
+              />
+            </div>
+          </div>
+        );
       })}
-      <button onClick={makeOrder}>Edit</button>
-      <button onClick={makeOrder}>Delete</button> */}
     </div>
   );
 };

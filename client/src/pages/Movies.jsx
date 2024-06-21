@@ -1,4 +1,4 @@
-//ex\client\src\pages\Movies.jsx
+// ex\client\src\pages\Movies.jsx
 import { useState, useEffect } from "react";
 import axios from "axios";
 import MoviesList from "../components/MoviesList";
@@ -19,28 +19,37 @@ const Movies = () => {
   return (
     <>
       <h3>Movies</h3>
-      <table border="1">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Year</th>
-            <th>Genres</th>
-            <th>Image</th>
-          </tr>
-        </thead>
-        <tbody>
-          {movies.map((move, index) => {
-            return (
-              <tr key={index}>
-                <td>{move.name}</td>
-                <td>{move.year}</td>
-                <td>{move.genres}</td>
-                <td>{move.image}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <div>
+        {movies.map((move, index) => {
+          return (
+            <div
+              key={index}
+              style={{
+                border: "1px solid black",
+                margin: "10px",
+                padding: "10px",
+              }}
+            >
+              <div>
+                <strong>Name:</strong> {move.name}
+              </div>
+              <div>
+                <strong>Year:</strong> {move.year}
+              </div>
+              <div>
+                <strong>Genres:</strong> {move.genres}
+              </div>
+              <div>
+                <img
+                  src={move.image}
+                  alt={move.name}
+                  style={{ width: "100px", height: "150px" }}
+                />
+              </div>
+            </div>
+          );
+        })}
+      </div>
       <br />
       <br />
       <div style={{ width: "50%", float: "left" }}>
