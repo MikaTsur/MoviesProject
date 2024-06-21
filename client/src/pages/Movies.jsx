@@ -1,13 +1,17 @@
+// ex\client\src\pages\Movies.jsx
+
 import { useState, useEffect } from "react";
 import axios from "axios";
 import MoviesList from "../components/MoviesList";
 import Movie from "../components/Movie";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const MOVIE_URL = "http://localhost:3011/movies";
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate(); // Initialize useNavigate hook
 
   useEffect(() => {
     fetchData();
@@ -35,6 +39,10 @@ const Movies = () => {
     setSearchTerm(event.target.value);
   };
 
+  const navigateToAddMovie = () => {
+    navigate("/add-movie"); // Navigate to the Add Movie page
+  };
+
   return (
     <>
       <h3>Movies</h3>
@@ -42,7 +50,7 @@ const Movies = () => {
         <button style={{ marginRight: "10px" }} onClick={fetchData}>
           All Movies
         </button>
-        <button style={{ marginRight: "10px" }} onClick={fetchData}>
+        <button style={{ marginRight: "10px" }} onClick={navigateToAddMovie}>
           Add Movie
         </button>
         <input
