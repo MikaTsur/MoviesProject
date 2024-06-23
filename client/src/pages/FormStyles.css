@@ -1,0 +1,17 @@
+/* ex\client\src\pages\FormStyles.css */
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.input-field {
+  margin-left: 10px;
+}
+
+.button-group {
+  margin-top: 10px;
+}
+
+.button {
+  margin-right: 10px;
+}
