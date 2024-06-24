@@ -1,29 +1,34 @@
+// C:\Users\morellyo\react_project\ex\server\controllers\moviesController.js
 const express = require("express");
 const moviesService = require("../services/moviesService");
+const Movie = require("../models/movieModel");
 
 const router = express.Router();
 
-// Entry Point: http://localhost:3000/movies
-
-// Get All movies (from tvmaze)
-
-router.get("/", async (req, res) => {
-  try {
-    const movies = await moviesService.getMovies2();
-    res.send(movies);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-});
-
-// Create movie
+// POST endpoint to add a new movie to MongoDB
 router.post("/", async (req, res) => {
   try {
-    const obj = req.body;
-    const result = await moviesService.addMovie(obj); // assuming addMovie method exists
-    res.status(201).send(result);
+    const { name, genres, image, premierd } = req.body;
+
+    if (!name || !genres || !image || !premierd) {
+      return res.status(400).json({ error: "All fields are required" });
+    }
+
+    // Create a new Movie object based on the Mongoose schema
+    const newMovie = new Movie({
+      name,
+      genres,
+      image,
+      premierd: parseInt(premierd), // Convert premierd to a Number
+    });
+
+    // Save the new movie to the database
+    const savedMovie = await newMovie.save();
+
+    res.status(200).json(savedMovie); // Respond with the saved movie document
   } catch (error) {
-    res.status(500).send(error);
+    console.error("Error adding movie:", error);
+    res.status(500).json({ error: "Failed to add movie" });
   }
 });
 
