@@ -1,4 +1,4 @@
-// C:\Users\morellyo\react_project\ex\client\src\App.jsx
+// C:\Users\morellyo\react_project\ex\client\src\App.jsx  =================================
 
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Movies from "./pages/Movies";

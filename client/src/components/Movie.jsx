@@ -1,4 +1,4 @@
-// ex\client\src\components\Movie.jsx
+// ex\client\src\components\Movie.jsx   ========================
 const Movie = ({ movie, onEdit, onDelete }) => {
   return (
     <div
@@ -12,10 +12,10 @@ const Movie = ({ movie, onEdit, onDelete }) => {
         <strong>Name:</strong> {movie.name}
       </div>
       <div>
-        <strong>Year:</strong> {movie.year}
+        <strong>Year:</strong> {movie.premierd}
       </div>
       <div>
-        <strong>Genres:</strong> {movie.genres}
+        <strong>Genres:</strong> {movie.genres.join(", ")}
       </div>
       <div>
         <img
@@ -28,7 +28,7 @@ const Movie = ({ movie, onEdit, onDelete }) => {
         <button style={{ marginRight: "10px" }} onClick={() => onEdit(movie)}>
           Edit
         </button>
-        <button onClick={() => onDelete(movie.id)}>Delete</button>
+        <button onClick={() => onDelete(movie._id)}>Delete</button>
       </div>
     </div>
   );

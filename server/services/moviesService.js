@@ -1,4 +1,4 @@
-//C:\Users\morellyo\react_project\ex\server\services\moviesService.js
+//C:\Users\morellyo\react_project\ex\server\services\moviesService.js  ========================
 const Movie = require("../models/movieModel");
 
 const getMovies = async () => {

@@ -8,3 +8,5 @@
 // };
 
 // module.exports = { getMovies2 };
+
+Now;

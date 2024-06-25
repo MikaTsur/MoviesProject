@@ -1,4 +1,4 @@
-// C:\Users\morellyo\react_project\ex\server\models\movieModel.js
+// C:\Users\morellyo\react_project\ex\server\models\movieModel.js ========================
 const mongoose = require("mongoose");
 
 const movieSchema = new mongoose.Schema(
@@ -8,7 +8,7 @@ const movieSchema = new mongoose.Schema(
       required: true,
     },
     genres: {
-      type: String,
+      type: [String], // Change type to array of strings
       required: true,
     },
     image: {
@@ -16,7 +16,7 @@ const movieSchema = new mongoose.Schema(
       required: true,
     },
     premierd: {
-      type: Number, // Change type to Number for storing just the year
+      type: Number,
       required: true,
     },
   },

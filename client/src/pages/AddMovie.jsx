@@ -1,7 +1,8 @@
-// ex\client\src\pages\AddMovie.jsx
+// ex\client\src\pages\AddMovie.jsx   ========================
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import HeaderButtons from "../components/HeaderButtons";
 import "./FormStyles.css"; // Import the reusable CSS file
 
@@ -20,12 +21,18 @@ const AddMovie = () => {
     event.preventDefault();
     const newMovie = {
       name: movieName,
-      genres: genres.split(",").map((genre) => genre.trim()),
+      genres: genres.split(",").map((genre) => genre.trim()), // Convert to array
       image: imageUrl,
       premiered: premiered,
     };
     console.log("New Movie:", newMovie);
-    // TODO: Send newMovie to server
+
+    try {
+      await axios.post("http://localhost:3011/movies", newMovie);
+      navigate("/movies");
+    } catch (error) {
+      console.error("Error adding movie:", error);
+    }
   };
 
   const handleCancel = () => {
@@ -78,12 +85,12 @@ const AddMovie = () => {
         </div>
         <div className="form-group">
           <label>
-            Premiered (dd/mm/yyyy):
+            Premiered (year):
             <input
               type="text"
               value={premiered}
               onChange={handleInputChange(setPremiered)}
-              placeholder="Enter premiere date"
+              placeholder="Enter premiere year"
               required
               className="input-field"
             />

@@ -1,4 +1,4 @@
-// ex\client\src\pages\Movies.jsx
+// // ex\client\src\pages\Movies.jsx =================================// ex\client\src\pages\Movies.jsx
 
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -14,11 +14,15 @@ const Movies = () => {
 
   useEffect(() => {
     fetchData();
-  }, []); // Empty dependency array to run once on mount
+  }, []);
 
   const fetchData = async () => {
-    const { data } = await axios.get(MOVIE_URL);
-    setMovies(data);
+    try {
+      const { data } = await axios.get(MOVIE_URL);
+      setMovies(data);
+    } catch (error) {
+      console.error("Error fetching movies:", error);
+    }
   };
 
   const handleFindMovie = async () => {

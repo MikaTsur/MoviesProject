@@ -1,4 +1,4 @@
-//C:\Users\morellyo\react_project\ex\server\index.js
+//C:\Users\morellyo\react_project\ex\server\index.js ========================
 const express = require("express");
 const cors = require("cors");
 const { connectMoviesDB } = require("./configs/db");

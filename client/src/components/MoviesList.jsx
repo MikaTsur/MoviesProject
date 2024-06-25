@@ -1,4 +1,4 @@
-// ex\client\src\components\MoviesList.jsx
+// ex\client\src\components\MoviesList.jsx   ========================
 import { useSelector } from "react-redux";
 import Movie from "./Movie";
 

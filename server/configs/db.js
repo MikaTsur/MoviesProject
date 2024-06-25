@@ -1,9 +1,9 @@
-// // C:\Users\morellyo\react_project\ex\server\configs\db.js
+// // C:\Users\morellyo\react_project\ex\server\configs\db.js  ========================
 const mongoose = require("mongoose");
 
 // Function to connect to the movies database
 const connectMoviesDB = () => {
-  mongoose.connect("mongodb://127.0.0.1:27017/movie_database", {
+  mongoose.connect("mongodb://127.0.0.1:27017/movie_database1", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     // Optionally, add more options as needed

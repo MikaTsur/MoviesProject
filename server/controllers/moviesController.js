@@ -1,9 +1,20 @@
-// C:\Users\morellyo\react_project\ex\server\controllers\moviesController.js
+// C:\Users\morellyo\react_project\ex\server\controllers\moviesController.js  ========================
 const express = require("express");
 const moviesService = require("../services/moviesService");
 const Movie = require("../models/movieModel");
 
 const router = express.Router();
+
+// GET endpoint to retrieve all movies from MongoDB
+router.get("/", async (req, res) => {
+  try {
+    const movies = await Movie.find();
+    res.status(200).json(movies);
+  } catch (error) {
+    console.error("Error retrieving movies:", error);
+    res.status(500).json({ error: "Failed to retrieve movies" });
+  }
+});
 
 // POST endpoint to add a new movie to MongoDB
 router.post("/", async (req, res) => {
@@ -31,5 +42,7 @@ router.post("/", async (req, res) => {
     res.status(500).json({ error: "Failed to add movie" });
   }
 });
+
+module.exports = router;
 
 module.exports = router;
