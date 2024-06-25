@@ -15,7 +15,7 @@ const moviesReducer = (state = initialState, action) => {
 
     case "REMOVE": {
       const movies = state.movies.filter(
-        (movie) => movie.serialNo !== action.payload
+        (movie) => movie._id !== action.payload
       );
       return { ...state, movies };
     }

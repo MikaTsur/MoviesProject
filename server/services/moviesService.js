@@ -20,4 +20,12 @@ const addMovie = async (movieData) => {
   }
 };
 
-module.exports = { getMovies, addMovie };
+const deleteMovie = async (id) => {
+  try {
+    await Movie.findByIdAndDelete(id);
+  } catch (error) {
+    throw error;
+  }
+};
+
+module.exports = { getMovies, addMovie, deleteMovie };
