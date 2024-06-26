@@ -1,10 +1,17 @@
-// ex\client\src\components\Movie.jsx   ========================
+// src/components/Movie.jsx ================================
 
 import React from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
-const Movie = ({ movie, onEdit, onDelete }) => {
+const Movie = ({ movie, onDelete }) => {
+  const navigate = useNavigate(); // Hook for navigation
+
   const handleImageError = (e) => {
-    e.target.src = "https://via.placeholder.com/100x150"; // Placeholder image
+    e.target.src = "https://via.placeholder.com/100x150"; // Placeholder image for errors
+  };
+
+  const handleEdit = () => {
+    navigate(`/edit-movie/${movie._id}`); // Navigate to edit page with the movie's ID
   };
 
   return (
@@ -29,12 +36,12 @@ const Movie = ({ movie, onEdit, onDelete }) => {
         <img
           src={movie.image}
           alt={movie.name}
-          style={{ width: "100px", height: "150px" }}
           onError={handleImageError}
+          style={{ width: "100px", height: "150px" }}
         />
       </div>
       <div style={{ marginTop: "10px" }}>
-        <button style={{ marginRight: "10px" }} onClick={() => onEdit(movie)}>
+        <button onClick={handleEdit} style={{ marginRight: "10px" }}>
           Edit
         </button>
         <button onClick={() => onDelete(movie._id)}>Delete</button>

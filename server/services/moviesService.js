@@ -28,4 +28,15 @@ const deleteMovie = async (id) => {
   }
 };
 
-module.exports = { getMovies, addMovie, deleteMovie };
+const updateMovie = async (id, movieData) => {
+  try {
+    const updatedMovie = await Movie.findByIdAndUpdate(id, movieData, {
+      new: true,
+    });
+    return updatedMovie;
+  } catch (error) {
+    throw error;
+  }
+};
+
+module.exports = { getMovies, addMovie, deleteMovie, updateMovie };

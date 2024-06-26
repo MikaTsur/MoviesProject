@@ -24,6 +24,15 @@ const moviesReducer = (state = initialState, action) => {
       return { ...state, movies: action.payload };
     }
 
+    case "UPDATE": {
+      const movies = state.movies.map((movie) =>
+        movie._id === action.payload.id
+          ? { ...movie, ...action.payload.updatedMovie }
+          : movie
+      );
+      return { ...state, movies };
+    }
+
     default:
       return state;
   }

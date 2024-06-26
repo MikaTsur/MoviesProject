@@ -12,4 +12,8 @@ const doSetMovies = (movies) => {
   return { type: "SET_MOVIES", payload: movies };
 };
 
-export { doRemoveMovie, doAddMovie, doSetMovies };
+const doUpdateMovie = (id, updatedMovie) => {
+  return { type: "UPDATE", payload: { id, updatedMovie } };
+};
+
+export { doRemoveMovie, doAddMovie, doSetMovies, doUpdateMovie };
