@@ -1,14 +1,17 @@
-// C:\Users\morellyo\react_project\ex\client\src\App.jsx
-
 // src/App.jsx
-import { Routes, Route, useNavigate } from "react-router-dom";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 import Movies from "./pages/Movies";
 import AddMovie from "./pages/AddMovie";
-import EditMovie from "./pages/EditMovie"; // Make sure this is correctly imported
+import EditMovie from "./pages/EditMovie";
+import HeaderButtons from "./components/HeaderButtons";
+import UpperLevelButtons from "./components/UpperLevelButtons";
 
 const App = () => {
   return (
     <>
+      <UpperLevelButtons />
+
       <h1>Movies - Subscriptions Web Site</h1>
       <Routes>
         <Route path="/" element={<h1>Welcome to the Movie Database</h1>} />

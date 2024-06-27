@@ -1,5 +1,6 @@
-//C:\Users\morellyo\react_project\ex\client\src\redux\actions.js  ============================
+// C:\Users\morellyo\react_project\ex\client\src\redux\actions.js
 
+// Movie actions
 const doRemoveMovie = (id) => {
   return { type: "REMOVE", payload: id };
 };
@@ -16,4 +17,30 @@ const doUpdateMovie = (id, updatedMovie) => {
   return { type: "UPDATE", payload: { id, updatedMovie } };
 };
 
-export { doRemoveMovie, doAddMovie, doSetMovies, doUpdateMovie };
+// Subscription actions, using a distinct prefix to avoid type conflicts
+const doRemoveSubscription = (id) => {
+  return { type: "REMOVE_SUBSCRIPTION", payload: id };
+};
+
+const doAddSubscription = (subscription) => {
+  return { type: "ADD_SUBSCRIPTION", payload: subscription };
+};
+
+const doSetSubscriptions = (subscriptions) => {
+  return { type: "SET_SUBSCRIPTIONS", payload: subscriptions };
+};
+
+const doUpdateSubscription = (id, updatedSubscription) => {
+  return { type: "UPDATE_SUBSCRIPTION", payload: { id, updatedSubscription } };
+};
+
+export {
+  doRemoveMovie,
+  doAddMovie,
+  doSetMovies,
+  doUpdateMovie,
+  doRemoveSubscription,
+  doAddSubscription,
+  doSetSubscriptions,
+  doUpdateSubscription,
+};

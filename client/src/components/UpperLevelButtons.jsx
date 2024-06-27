@@ -10,7 +10,7 @@ const UpperLevelButtons = () => {
   };
 
   const navigateToSubscrptions = () => {
-    navigate("/Subscrptions");
+    navigate("/subscrptions");
   };
 
   const navigateToUserManagement = () => {
