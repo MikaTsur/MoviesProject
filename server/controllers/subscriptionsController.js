@@ -1,6 +1,6 @@
 // C:\Users\morellyo\react_project\ex\server\controllers\subscriptionsController.js  ========================
 const express = require("express");
-const subscriptionsService = require("../services/subscriptionsService");
+const subscriptionsService = require("../services/moviesService");
 const Subscription = require("../models/subscriptionModel");
 
 const router = express.Router();

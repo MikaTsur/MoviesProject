@@ -1,15 +1,17 @@
-// C:\Users\morellyo\react_project\ex\client\src\pages\AddSubscriptionForm.jsx   ============
+// C:\Users\morellyo\react_project\ex\client\src\pages\AddSubscriptionForm.jsx
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import HeaderButtons from "../components/HeaderButtons";
 import "./FormStyles.css"; // Import the reusable CSS file
+import Subscription from "../components/Subscription";
+import SubscriptionsHeaderButtons from "../components/SubscriptionsHeaderButtons";
 
 const AddSubscriptionForm = ({ onAddSubscription }) => {
-  const [subscriptionName, setSubscriptionName] = useState("");
-  const [subscriptionEmail, setSubscriptionEmail] = useState("");
-  const [subscriptionCity, setSubscriptionCity] = useState("");
+  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState("");
+  const [city, setCity] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -19,21 +21,21 @@ const AddSubscriptionForm = ({ onAddSubscription }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!subscriptionName || !subscriptionEmail || !subscriptionCity) {
+    if (!fullname || !email || !city) {
       setError("All fields are required");
       return;
     }
 
     const newSubscription = {
-      name: subscriptionName,
-      email: subscriptionEmail,
-      city: subscriptionCity,
+      fullname,
+      email,
+      city,
     };
     console.log("New Subscription:", newSubscription);
 
     try {
       const { data } = await axios.post(
-        "http://localhost:3011/subscriptions", // Correct the endpoint
+        "http://localhost:3011/subscriptions",
         newSubscription
       );
       onAddSubscription(data); // Ensure this function is passed as a prop or handle the state update here
@@ -54,17 +56,17 @@ const AddSubscriptionForm = ({ onAddSubscription }) => {
   return (
     <>
       <h3>Add Subscription</h3>
-      <HeaderButtons />
+      <SubscriptionsHeaderButtons />
       {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>
-            Name:
+            Full Name:
             <input
               type="text"
-              value={subscriptionName}
-              onChange={handleInputChange(setSubscriptionName)}
-              placeholder="Enter subscription name"
+              value={fullname}
+              onChange={handleInputChange(setFullname)}
+              placeholder="Enter full name"
               required
               className="input-field"
             />
@@ -74,9 +76,9 @@ const AddSubscriptionForm = ({ onAddSubscription }) => {
           <label>
             Email:
             <input
-              type="email" // Changed type to email to validate email input
-              value={subscriptionEmail}
-              onChange={handleInputChange(setSubscriptionEmail)}
+              type="email"
+              value={email}
+              onChange={handleInputChange(setEmail)}
               placeholder="Enter email"
               required
               className="input-field"
@@ -88,8 +90,8 @@ const AddSubscriptionForm = ({ onAddSubscription }) => {
             City:
             <input
               type="text"
-              value={subscriptionCity}
-              onChange={handleInputChange(setSubscriptionCity)}
+              value={city}
+              onChange={handleInputChange(setCity)}
               placeholder="Enter city"
               required
               className="input-field"

@@ -1,6 +1,6 @@
 // C:\Users\morellyo\react_project\ex\server\controllers\moviesController.js  ========================
 const express = require("express");
-const moviesService = require("../services/moviesService");
+const moviesService = require("../services/subscriptionsService");
 const Movie = require("../models/movieModel");
 
 const router = express.Router();

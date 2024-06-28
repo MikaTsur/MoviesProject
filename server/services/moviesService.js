@@ -1,51 +1,42 @@
 //C:\Users\morellyo\react_project\ex\server\services\moviesService.js  ========================
-const Subscription = require("../models/subscriptionModel");
+const Movie = require("../models/movieModel");
 
-const getSubscriptions = async () => {
+const getMovies = async () => {
   try {
-    const subscriptions = await Subscription.find();
-    return subscriptions;
+    const movies = await Movie.find();
+    return movies;
   } catch (error) {
     throw error;
   }
 };
 
-const addSubscription = async (subscriptionData) => {
+const addMovie = async (movieData) => {
   try {
-    const newSubscription = new Subscription(subscriptionData);
-    const savedSubscription = await newSubscription.save();
-    return savedSubscription;
+    const newMovie = new Movie(movieData);
+    const savedMovie = await newMovie.save();
+    return savedMovie;
   } catch (error) {
     throw error;
   }
 };
 
-const deleteSubscription = async (id) => {
+const deleteMovie = async (id) => {
   try {
-    await Subscription.findByIdAndDelete(id);
+    await Movie.findByIdAndDelete(id);
   } catch (error) {
     throw error;
   }
 };
 
-const updateSubscription = async (id, subscriptionData) => {
+const updateMovie = async (id, movieData) => {
   try {
-    const updatedSubscription = await Subscription.findByIdAndUpdate(
-      id,
-      subscriptionData,
-      {
-        new: true,
-      }
-    );
-    return updatedSubscription;
+    const updatedMovie = await Movie.findByIdAndUpdate(id, movieData, {
+      new: true,
+    });
+    return updatedMovie;
   } catch (error) {
     throw error;
   }
 };
 
-module.exports = {
-  getSubscriptions,
-  addSubscription,
-  deleteSubscription,
-  updateSubscription,
-};
+module.exports = { getMovies, addMovie, deleteMovie, updateMovie };
