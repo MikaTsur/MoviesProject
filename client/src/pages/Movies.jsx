@@ -58,7 +58,7 @@ const Movies = () => {
 
   return (
     <>
-      <h3>Movies</h3>
+      <h3>Movies--</h3>
       <HeaderButtons />
       <div style={{ marginBottom: "10px" }}>
         <input

@@ -1,4 +1,4 @@
-//C:\Users\morellyo\react_project\ex\client\src\main.jsx  =================================
+// C:\Users\morellyo\react_project\ex\client\src\main.jsx  =================================
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 

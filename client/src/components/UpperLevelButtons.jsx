@@ -9,8 +9,8 @@ const UpperLevelButtons = () => {
     navigate("/movies");
   };
 
-  const navigateToSubscrptions = () => {
-    navigate("/subscrptions");
+  const navigateToSubscriptions = () => {
+    navigate("/subscriptions");
   };
 
   const navigateToUserManagement = () => {
@@ -26,8 +26,8 @@ const UpperLevelButtons = () => {
       <button style={{ marginRight: "10px" }} onClick={navigateToMovies}>
         All Movies
       </button>
-      <button style={{ marginRight: "10px" }} onClick={navigateToSubscrptions}>
-        Subscrptions
+      <button style={{ marginRight: "10px" }} onClick={navigateToSubscriptions}>
+        Subscriptions
       </button>
       <button
         style={{ marginRight: "10px" }}

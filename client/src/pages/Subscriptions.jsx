@@ -1,14 +1,15 @@
 // C:\Users\morellyo\react_project\ex\client\src\pages\Subscriptions.jsx =================================
-import { useState, useEffect } from "react";
+
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import SubscriptionsList from "../components/SubscriptionsList";
-import Subscription from "../components/Subscription.jsx";
-import HeaderButtons from "../components/HeaderButtons";
+import Subscription from "../components/Subscription";
+import SubscriptionsHeaderButtons from "../components/SubscriptionsHeaderButtons.jsx";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { doRemoveSubscription } from "../redux/actions";
 
-const SUBSCRIPTION_URL = "http://localhost:3011/subscrptions";
+const SUBSCRIPTION_URL = "http://localhost:3011/subscriptions";
 
 const Subscriptions = () => {
   const [subscriptions, setSubscriptions] = useState([]);
@@ -61,7 +62,7 @@ const Subscriptions = () => {
   return (
     <>
       <h3>Subscriptions</h3>
-      <HeaderButtons />
+      <SubscriptionsHeaderButtons />
       <div style={{ marginBottom: "10px" }}>
         <input
           type="text"

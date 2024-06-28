@@ -1,7 +1,7 @@
-// C:\Users\morellyo\react_project\ex\client\src\components\Subscription.jsx
+// C:\Users\morellyo\react_project\ex\client\src\components\Subscription.jsx =======
 
 import React from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 
 const Subscription = ({ subscription, onDelete }) => {
   const navigate = useNavigate(); // Hook for navigation
