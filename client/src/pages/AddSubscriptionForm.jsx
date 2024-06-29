@@ -1,14 +1,12 @@
 // C:\Users\morellyo\react_project\ex\client\src\pages\AddSubscriptionForm.jsx
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import HeaderButtons from "../components/HeaderButtons";
 import "./FormStyles.css"; // Import the reusable CSS file
-import Subscription from "../components/Subscription";
 import SubscriptionsHeaderButtons from "../components/SubscriptionsHeaderButtons";
 
-const AddSubscriptionForm = ({ onAddSubscription }) => {
+const AddSubscriptionForm = () => {
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [city, setCity] = useState("");
@@ -38,8 +36,8 @@ const AddSubscriptionForm = ({ onAddSubscription }) => {
         "http://localhost:3011/subscriptions",
         newSubscription
       );
-      onAddSubscription(data); // Ensure this function is passed as a prop or handle the state update here
-      navigate("/subscriptions"); // Correct the navigate path
+      console.log("Subscription added:", data);
+      navigate("/subscriptions"); // Redirect to subscriptions list on success
     } catch (error) {
       console.error("Error adding subscription:", error);
       setError(
@@ -50,7 +48,7 @@ const AddSubscriptionForm = ({ onAddSubscription }) => {
   };
 
   const handleCancel = () => {
-    navigate("/subscriptions"); // Correct the navigate path
+    navigate("/subscriptions"); // Redirect to subscriptions list on cancel
   };
 
   return (

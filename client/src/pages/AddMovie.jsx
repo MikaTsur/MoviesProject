@@ -1,12 +1,11 @@
-// ex\client\src\pages\AddMovie.jsx   ========================
-
+// ex\client\src\pages\AddMovie.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import HeaderButtons from "../components/HeaderButtons";
 import "./FormStyles.css"; // Import the reusable CSS file
 
-const AddMovie = ({ onAddMovie }) => {
+const AddMovie = () => {
   const [movieName, setMovieName] = useState("");
   const [genres, setGenres] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -38,7 +37,7 @@ const AddMovie = ({ onAddMovie }) => {
         "http://localhost:3011/movies",
         newMovie
       );
-      onAddMovie(data); // Call the function to update the state
+      console.log("Movie added:", data);
       navigate("/movies"); // Navigate to movies page after adding
     } catch (error) {
       console.error("Error adding movie:", error);
