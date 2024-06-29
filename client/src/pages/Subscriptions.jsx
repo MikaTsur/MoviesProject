@@ -1,4 +1,3 @@
-// C:\Users\morellyo\react_project\ex\client\src\pages\Subscriptions.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Subscription from "../components/Subscription";
@@ -6,6 +5,7 @@ import SubscriptionsHeaderButtons from "../components/SubscriptionsHeaderButtons
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { doRemoveSubscription } from "../redux/actions";
+import "../styles/SubscriptionStyles.css";
 
 const SUBSCRIPTION_URL = "http://localhost:3011/subscriptions";
 
@@ -57,6 +57,17 @@ const Subscriptions = () => {
     }
   };
 
+  const handleAddMovie = (updatedSubscription) => {
+    console.log("handleAddMovie called with:", updatedSubscription); // Detailed log
+    setSubscriptions((prevSubscriptions) =>
+      prevSubscriptions.map((subscription) =>
+        subscription._id === updatedSubscription._id
+          ? updatedSubscription
+          : subscription
+      )
+    );
+  };
+
   return (
     <>
       <h3>Subscriptions</h3>
@@ -77,6 +88,7 @@ const Subscriptions = () => {
             key={index}
             subscription={subscription}
             onDelete={handleDeleteSubscription}
+            onAddMovie={handleAddMovie} // Passing handleAddMovie as a prop
           />
         ))}
       </div>

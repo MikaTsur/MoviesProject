@@ -1,7 +1,8 @@
+//C:\Users\morellyo\react_project\ex\server\controllers\subscriptionsController.js =====
+// module.exports = router;
 const express = require("express");
-const subscriptionsService = require("../services/moviesService");
 const Subscription = require("../models/subscriptionModel");
-const Movie = require("../models/movieModel"); // Import the Movie model to populate movie details
+const Movie = require("../models/movieModel");
 
 const router = express.Router();
 
@@ -77,6 +78,7 @@ router.put("/:id", async (req, res) => {
     }
 
     res.status(200).json(updatedSubscription);
+    x;
   } catch (error) {
     console.error("Error updating subscription:", error);
     res.status(500).json({ error: "Failed to update subscription" });
@@ -113,13 +115,30 @@ router.post("/:id/add-movie", async (req, res) => {
       return res.status(400).json({ error: "Movie ID and date are required" });
     }
 
+    const movie = await Movie.findById(movieId);
+    if (!movie) {
+      return res.status(404).json({ error: "Movie not found" });
+    }
+
+    console.log(
+      `Adding movie to subscription: subscriptionId=${id}, movieId=${movieId}, date=${date}`
+    );
+
     const subscription = await Subscription.findById(id);
     if (!subscription) {
       return res.status(404).json({ error: "Subscription not found" });
     }
 
     subscription.moviesWatched.push({ movieId, date });
+
+    console.log("Subscription before saving:", subscription);
+
     await subscription.save();
+
+    // Populate the movieId field after saving
+    await subscription.populate("moviesWatched.movieId").execPopulate();
+
+    console.log("Subscription after populating:", subscription);
 
     res.status(200).json(subscription);
   } catch (error) {

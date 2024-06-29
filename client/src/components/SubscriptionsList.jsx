@@ -1,4 +1,4 @@
-// C:\Users\morellyo\react_project\ex\client\src\components\SubscriptionsList.jsx
+// C:\Users\morellyo\react_project\ex\client\src\components\SubscriptionsList.jsx ====
 import { useSelector } from "react-redux";
 import Subscription from "./Subscription";
 

@@ -1,6 +1,6 @@
-// C:\Users\morellyo\react_project\ex\client\src\components\SubscribeMovieForm.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "../styles/SubscriptionStyles.css";
 
 const SubscribeMovieForm = ({ subscriptionId, onAddMovie }) => {
   const [movies, setMovies] = useState([]);
@@ -31,20 +31,31 @@ const SubscribeMovieForm = ({ subscriptionId, onAddMovie }) => {
         `http://localhost:3011/subscriptions/${subscriptionId}/add-movie`,
         { movieId: selectedMovieId, date }
       );
-      onAddMovie(response.data);
+      console.log("Movie added response:", response.data); // Detailed log
+      onAddMovie(response.data); // Call onAddMovie with the updated subscription data
     } catch (error) {
-      console.error("Error subscribing to movie:", error);
+      if (error.response) {
+        console.error("Error response data:", error.response.data);
+        console.error("Error response status:", error.response.status);
+        console.error("Error response headers:", error.response.headers);
+      } else if (error.request) {
+        console.error("Error request data:", error.request);
+      } else {
+        console.error("Error message:", error.message);
+      }
+      console.error("Error config:", error.config);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <form onSubmit={handleSubmit} className="container rectangle">
+      <div className="form-group">
         <label>
           Movie:
           <select
             value={selectedMovieId}
             onChange={(e) => setSelectedMovieId(e.target.value)}
+            className="input-field"
           >
             <option value="">Select a movie</option>
             {movies.map((movie) => (
@@ -55,7 +66,7 @@ const SubscribeMovieForm = ({ subscriptionId, onAddMovie }) => {
           </select>
         </label>
       </div>
-      <div>
+      <div className="form-group">
         <label>
           Date:
           <input
@@ -63,10 +74,15 @@ const SubscribeMovieForm = ({ subscriptionId, onAddMovie }) => {
             value={date}
             onChange={(e) => setDate(e.target.value)}
             placeholder="dd/mm/yyyy"
+            className="input-field"
           />
         </label>
       </div>
-      <button type="submit">Subscribe</button>
+      <div className="button-group">
+        <button type="submit" className="button">
+          Subscribe
+        </button>
+      </div>
     </form>
   );
 };
