@@ -7,7 +7,7 @@ import HeaderButtons from "./components/HeaderButtons";
 import UpperLevelButtons from "./components/UpperLevelButtons";
 import Subscriptions from "./pages/Subscriptions";
 import AddSubscriptionForm from "./pages/AddSubscriptionForm";
-
+import EditSubscription from "./pages/EditSubscription";
 const App = () => {
   return (
     <>
@@ -20,6 +20,7 @@ const App = () => {
         <Route path="/edit-movie/:id" element={<EditMovie />} />
         <Route path="/subscriptions" element={<Subscriptions />} />
         <Route path="/add-subscription" element={<AddSubscriptionForm />} />
+        <Route path="/edit-subscription/:id" element={<EditSubscription />} />
       </Routes>
     </>
   );
