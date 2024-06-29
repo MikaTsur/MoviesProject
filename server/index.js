@@ -4,7 +4,8 @@ const cors = require("cors");
 const { connectMoviesDB } = require("./configs/db");
 
 const moviesController = require("./controllers/moviesController");
-const subscriptionsController = require("./controllers/subscriptionsController"); // Add this line
+const subscriptionsController = require("./controllers/subscriptionsController");
+const usersController = require("./controllers/usersController");
 
 const app = express();
 const PORT = 3011;
@@ -15,7 +16,8 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/movies", moviesController);
-app.use("/subscriptions", subscriptionsController); // Add this line
+app.use("/subscriptions", subscriptionsController);
+app.use("/users", usersController);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
