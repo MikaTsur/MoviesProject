@@ -1,8 +1,6 @@
-// C:\Users\morellyo\react_project\ex\client\src\pages\Subscriptions.jsx =================================
-
+// C:\Users\morellyo\react_project\ex\client\src\pages\Subscriptions.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import SubscriptionsList from "../components/SubscriptionsList";
 import Subscription from "../components/Subscription";
 import SubscriptionsHeaderButtons from "../components/SubscriptionsHeaderButtons.jsx";
 import { useNavigate } from "react-router-dom";
@@ -26,7 +24,7 @@ const Subscriptions = () => {
       const { data } = await axios.get(SUBSCRIPTION_URL);
       setSubscriptions(data);
     } catch (error) {
-      console.error("Error fetching Subscriptions:", error);
+      console.error("Error fetching subscriptions:", error);
     }
   };
 
@@ -83,12 +81,6 @@ const Subscriptions = () => {
         ))}
       </div>
       <div style={{ clear: "both" }}></div>
-      <br />
-      <div style={{ width: "50%", float: "left" }}>
-        <SubscriptionsList />
-      </div>
-      <br />
-      <br />
     </>
   );
 };

@@ -1,4 +1,3 @@
-//C:\Users\morellyo\react_project\ex\server\models\subscriptionModel.js ========================
 const mongoose = require("mongoose");
 
 const subscriptionSchema = new mongoose.Schema(
@@ -8,15 +7,26 @@ const subscriptionSchema = new mongoose.Schema(
       required: true,
     },
     city: {
-      type: String, // Change type to array of strings
+      type: String,
       required: true,
     },
     email: {
       type: String,
       required: true,
     },
+    moviesWatched: [
+      {
+        movieId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Movie",
+        },
+        date: {
+          type: String, // You can use Date type as well
+        },
+      },
+    ],
   },
-  { timestamps: true } // Adds createdAt and updatedAt timestamps
+  { timestamps: true }
 );
 
 const Subscription = mongoose.model("Subscription", subscriptionSchema);

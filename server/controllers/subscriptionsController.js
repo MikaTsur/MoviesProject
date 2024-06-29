@@ -1,14 +1,16 @@
-// C:\Users\morellyo\react_project\ex\server\controllers\subscriptionsController.js  ========================
 const express = require("express");
 const subscriptionsService = require("../services/moviesService");
 const Subscription = require("../models/subscriptionModel");
+const Movie = require("../models/movieModel"); // Import the Movie model to populate movie details
 
 const router = express.Router();
 
-// GET endpoint to retrieve all subscriptions from MongoDB
+// GET endpoint to retrieve all subscriptions from MongoDB and populate moviesWatched
 router.get("/", async (req, res) => {
   try {
-    const subscriptions = await Subscription.find();
+    const subscriptions = await Subscription.find().populate(
+      "moviesWatched.movieId"
+    );
     res.status(200).json(subscriptions);
   } catch (error) {
     console.error("Error retrieving subscriptions:", error);
@@ -46,7 +48,7 @@ router.post("/", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    await subscriptionsService.deleteSubscription(id);
+    await Subscription.findByIdAndDelete(id);
     res.status(200).json({ message: "Subscription deleted successfully" });
   } catch (error) {
     console.error("Error deleting subscription:", error);
@@ -71,7 +73,7 @@ router.put("/:id", async (req, res) => {
     );
 
     if (!updatedSubscription) {
-      return res.status(404).json({ error: "subscription not found" });
+      return res.status(404).json({ error: "Subscription not found" });
     }
 
     res.status(200).json(updatedSubscription);
@@ -85,7 +87,9 @@ router.put("/:id", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const subscription = await Subscription.findById(id);
+    const subscription = await Subscription.findById(id).populate(
+      "moviesWatched.movieId"
+    );
     if (!subscription) {
       return res.status(404).json({ error: "Subscription not found" });
     }
@@ -96,6 +100,31 @@ router.get("/:id", async (req, res) => {
       return res.status(404).json({ error: "Subscription not found" });
     }
     res.status(500).json({ error: "Failed to retrieve subscription" });
+  }
+});
+
+// POST endpoint to add a movie subscription to a member
+router.post("/:id/add-movie", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { movieId, date } = req.body;
+
+    if (!movieId || !date) {
+      return res.status(400).json({ error: "Movie ID and date are required" });
+    }
+
+    const subscription = await Subscription.findById(id);
+    if (!subscription) {
+      return res.status(404).json({ error: "Subscription not found" });
+    }
+
+    subscription.moviesWatched.push({ movieId, date });
+    await subscription.save();
+
+    res.status(200).json(subscription);
+  } catch (error) {
+    console.error("Error adding movie to subscription:", error);
+    res.status(500).json({ error: "Failed to add movie to subscription" });
   }
 });
 
