@@ -1,4 +1,3 @@
-//C:\Users\morellyo\react_project\ex\client\src\components\UpperLevelButtons.jsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -17,8 +16,9 @@ const UpperLevelButtons = () => {
     navigate("/UserManagement");
   };
 
-  const navigateToLogOut = () => {
-    navigate("/LogOut");
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
   };
 
   return (
@@ -35,7 +35,7 @@ const UpperLevelButtons = () => {
       >
         User Management
       </button>
-      <button style={{ marginRight: "10px" }} onClick={navigateToLogOut}>
+      <button style={{ marginRight: "10px" }} onClick={handleLogout}>
         Log Out
       </button>
     </div>

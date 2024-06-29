@@ -1,4 +1,4 @@
-// C:\Users\morellyo\react_project\ex\server\models\movieModel.js ========================
+// C:\Users\morellyo\react_project\ex\server\models\userModel.js
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema(
@@ -8,11 +8,11 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
     password: {
-      type: [String], // Change type to array of strings
+      type: String, // Plain string for simplicity
       required: true,
     },
   },
-  { timestamps: true } // Adds createdAt and updatedAt timestamps
+  { timestamps: true }
 );
 
 const User = mongoose.model("User", userSchema);
