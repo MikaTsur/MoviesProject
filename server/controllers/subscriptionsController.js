@@ -6,7 +6,6 @@ const Movie = require("../models/movieModel");
 
 const router = express.Router();
 
-// GET endpoint to retrieve all subscriptions from MongoDB and populate moviesWatched
 router.get("/", async (req, res) => {
   try {
     const subscriptions = await Subscription.find().populate(
