@@ -29,12 +29,6 @@ const UpperLevelButtons = () => {
       <button style={{ marginRight: "10px" }} onClick={navigateToSubscriptions}>
         Subscriptions
       </button>
-      <button
-        style={{ marginRight: "10px" }}
-        onClick={navigateToUserManagement}
-      >
-        User Management
-      </button>
       <button style={{ marginRight: "10px" }} onClick={handleLogout}>
         Log Out
       </button>

@@ -18,7 +18,7 @@ const Subscription = ({ subscription, onDelete, onAddMovie }) => {
   const handleAddMovie = (updatedSubscription) => {
     setMoviesWatched(updatedSubscription.moviesWatched);
     setShowForm(false);
-    onAddMovie(updatedSubscription); // Ensure the parent state is updated
+    onAddMovie(updatedSubscription);
   };
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const Subscription = ({ subscription, onDelete, onAddMovie }) => {
             Delete
           </button>
         </div>
-        <div>
+        <div className="movies-watched-frame">
           <h4>Movies Watched</h4>
           <ul className="movies-list">
             {moviesWatched.map((movie) => (

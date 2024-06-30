@@ -1,4 +1,4 @@
-/* General container style */
+/* //C:\Users\morellyo\react_project\ex\client\src\styles\SubscriptionStyles.css */
 .container {
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -73,4 +73,12 @@
   padding: 20px;
   margin-top: 20px;
   background-color: #e7f1ff;
+}
+
+.movies-watched-frame {
+  border: 1px solid #007bff;
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 15px;
+  background-color: #ffffff;
 }
