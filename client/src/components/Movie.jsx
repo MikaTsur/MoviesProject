@@ -1,17 +1,32 @@
-// src/components/Movie.jsx ================================
-
-import React from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Movie = ({ movie, onDelete }) => {
-  const navigate = useNavigate(); // Hook for navigation
+  const [subscribers, setSubscribers] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchSubscribers = async () => {
+      try {
+        const { data } = await axios.get(`http://localhost:3011/subscriptions`);
+        const movieSubscribers = data.filter((subscription) =>
+          subscription.moviesWatched.some((m) => m.movieId._id === movie._id)
+        );
+        setSubscribers(movieSubscribers);
+      } catch (error) {
+        console.error("Error fetching subscribers:", error);
+      }
+    };
+    fetchSubscribers();
+  }, [movie._id]);
 
   const handleImageError = (e) => {
-    e.target.src = "https://via.placeholder.com/100x150"; // Placeholder image for errors
+    e.target.src = "https://via.placeholder.com/100x150";
   };
 
   const handleEdit = () => {
-    navigate(`/edit-movie/${movie._id}`); // Navigate to edit page with the movie's ID
+    navigate(`/edit-movie/${movie._id}`);
   };
 
   return (
@@ -45,6 +60,21 @@ const Movie = ({ movie, onDelete }) => {
           Edit
         </button>
         <button onClick={() => onDelete(movie._id)}>Delete</button>
+      </div>
+      <div>
+        <strong>Subscribers:</strong>
+        <ul>
+          {subscribers.map((sub) => {
+            const movieWatched = sub.moviesWatched.find(
+              (m) => m.movieId._id === movie._id
+            );
+            return (
+              <li key={sub._id}>
+                {sub.fullname}, {movieWatched.date}
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </div>
   );

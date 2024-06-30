@@ -1,4 +1,4 @@
-// // ex\client\src\pages\Movies.jsx =================================// ex\client\src\pages\Movies.jsx
+// // ex\client\src\pages\Movies.jsx =================================
 import { useState, useEffect } from "react";
 import axios from "axios";
 import MoviesList from "../components/MoviesList";
