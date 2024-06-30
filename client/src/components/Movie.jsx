@@ -12,7 +12,9 @@ const Movie = ({ movie, onDelete }) => {
       try {
         const { data } = await axios.get(`http://localhost:3011/subscriptions`);
         const movieSubscribers = data.filter((subscription) =>
-          subscription.moviesWatched.some((m) => m.movieId._id === movie._id)
+          subscription.moviesWatched.some(
+            (m) => m.movieId && m.movieId._id === movie._id
+          )
         );
         setSubscribers(movieSubscribers);
       } catch (error) {
@@ -69,11 +71,11 @@ const Movie = ({ movie, onDelete }) => {
           <ul className="movies-list">
             {subscribers.map((sub) => {
               const movieWatched = sub.moviesWatched.find(
-                (m) => m.movieId._id === movie._id
+                (m) => m.movieId && m.movieId._id === movie._id
               );
               return (
                 <li key={sub._id}>
-                  {sub.fullname}, {movieWatched.date}
+                  {sub.fullname}, {movieWatched ? movieWatched.date : "N/A"}
                 </li>
               );
             })}

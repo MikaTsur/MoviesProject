@@ -47,7 +47,7 @@ router.post("/", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    await moviesService.deleteMovie(id);
+    await Movie.findByIdAndDelete(id);
     res.status(200).json({ message: "Movie deleted successfully" });
   } catch (error) {
     console.error("Error deleting movie:", error);

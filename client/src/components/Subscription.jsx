@@ -54,8 +54,8 @@ const Subscription = ({ subscription, onDelete, onAddMovie }) => {
           <h4>Movies Watched</h4>
           <ul className="movies-list">
             {moviesWatched.map((movie) => (
-              <li key={movie.movieId._id}>
-                {movie.movieId.name} , {movie.date}
+              <li key={movie.movieId ? movie.movieId._id : movie._id}>
+                {movie.movieId ? movie.movieId.name : "Unknown"}, {movie.date}
               </li>
             ))}
           </ul>

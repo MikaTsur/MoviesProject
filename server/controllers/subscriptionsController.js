@@ -1,4 +1,4 @@
-//C:\Users\morellyo\react_project\ex\server\controllers\subscriptionsController.js =====
+//C:\Users\morellyo\react_project\ex\server\controllers\subscriptionsController.js ===== Mika test
 // module.exports = router;
 const express = require("express");
 const Subscription = require("../models/subscriptionModel");
@@ -6,7 +6,6 @@ const Movie = require("../models/movieModel");
 
 const router = express.Router();
 
-// GET endpoint to retrieve all subscriptions from MongoDB and populate moviesWatched
 router.get("/", async (req, res) => {
   try {
     const subscriptions = await Subscription.find().populate(
