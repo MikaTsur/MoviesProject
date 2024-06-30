@@ -1,4 +1,4 @@
-/* //C:\Users\morellyo\react_project\ex\client\src\styles\SubscriptionStyles.css */
+/* src/styles/SubscriptionStyles.css */
 .container {
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -8,14 +8,12 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Header style */
 .header {
   font-size: 1.2em;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
-/* Button styles */
 .button {
   padding: 10px 15px;
   margin: 5px;
@@ -29,27 +27,6 @@
 
 .button:hover {
   background-color: #0056b3;
-}
-
-/* Form styles */
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.input-field {
-  width: 100%;
-  padding: 8px;
-  box-sizing: border-box;
-}
-
-.button-group {
-  display: flex;
-  justify-content: space-between;
 }
 
 .movies-list {
@@ -66,7 +43,6 @@
   border-bottom: none;
 }
 
-/* Rectangle style */
 .rectangle {
   border: 2px solid #007bff;
   border-radius: 10px;

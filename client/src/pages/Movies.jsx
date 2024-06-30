@@ -1,12 +1,11 @@
-// // ex\client\src\pages\Movies.jsx =================================
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import MoviesList from "../components/MoviesList";
-import Movie from "../components/Movie"; // Make sure this import is correct
+import Movie from "../components/Movie";
 import HeaderButtons from "../components/HeaderButtons";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { doRemoveMovie } from "../redux/actions";
+import "../styles/SubscriptionStyles.css";
 
 const MOVIE_URL = "http://localhost:3011/movies";
 
@@ -50,7 +49,7 @@ const Movies = () => {
     try {
       await axios.delete(`${MOVIE_URL}/${id}`);
       dispatch(doRemoveMovie(id));
-      fetchData(); // Refresh the list of movies
+      fetchData();
     } catch (error) {
       console.error("Error deleting movie:", error);
     }
@@ -58,7 +57,7 @@ const Movies = () => {
 
   return (
     <>
-      <h3>Movies--</h3>
+      <h3>Movies</h3>
       <HeaderButtons />
       <div style={{ marginBottom: "10px" }}>
         <input
@@ -68,20 +67,15 @@ const Movies = () => {
           onChange={handleInputChange}
           style={{ marginRight: "10px" }}
         />
-        <button onClick={handleFindMovie}>Find</button>
+        <button className="button" onClick={handleFindMovie}>
+          Find
+        </button>
       </div>
       <div>
         {movies.map((movie, index) => (
           <Movie key={index} movie={movie} onDelete={handleDeleteMovie} />
         ))}
       </div>
-      <div style={{ clear: "both" }}></div>
-      <br />
-      <div style={{ width: "50%", float: "left" }}>
-        <MoviesList />
-      </div>
-      <br />
-      <br />
     </>
   );
 };
