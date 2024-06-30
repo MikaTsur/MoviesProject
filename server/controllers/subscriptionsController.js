@@ -1,4 +1,4 @@
-//C:\Users\morellyo\react_project\ex\server\controllers\subscriptionsController.js =====
+//C:\Users\morellyo\react_project\ex\server\controllers\subscriptionsController.js ===== Mika test
 // module.exports = router;
 const express = require("express");
 const Subscription = require("../models/subscriptionModel");
