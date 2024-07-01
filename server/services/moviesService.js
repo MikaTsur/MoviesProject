@@ -1,4 +1,4 @@
-//C:\Users\morellyo\react_project\ex\server\services\moviesService.js  ========================
+//C:\Users\morellyo\react_project\ex\server\services\moviesService.js
 const Movie = require("../models/movieModel");
 const Subscription = require("../models/subscriptionModel");
 
@@ -6,6 +6,15 @@ const getMovies = async () => {
   try {
     const movies = await Movie.find();
     return movies;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getMovieById = async (id) => {
+  try {
+    const movie = await Movie.findById(id);
+    return movie;
   } catch (error) {
     throw error;
   }
@@ -44,4 +53,10 @@ const updateMovie = async (id, movieData) => {
   }
 };
 
-module.exports = { getMovies, addMovie, deleteMovie, updateMovie };
+module.exports = {
+  getMovies,
+  getMovieById,
+  addMovie,
+  deleteMovie,
+  updateMovie,
+};

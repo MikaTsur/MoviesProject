@@ -1,4 +1,4 @@
-// C:\Users\morellyo\react_project\ex\server\controllers\moviesController.js  ========================
+// C:\Users\morellyo\react_project\ex\server\controllers\moviesController.js
 const express = require("express");
 const moviesService = require("../services/moviesService");
 const router = express.Router();
@@ -40,11 +40,9 @@ router.delete("/:id", async (req, res) => {
 
     await moviesService.deleteMovie(id);
 
-    res
-      .status(200)
-      .json({
-        message: "Movie and related subscriptions updated successfully",
-      });
+    res.status(200).json({
+      message: "Movie and related subscriptions updated successfully",
+    });
   } catch (error) {
     console.error("Error deleting movie:", error);
     res.status(500).json({ error: "Failed to delete movie" });
@@ -79,7 +77,7 @@ router.put("/:id", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const movie = await moviesService.getMovies(id);
+    const movie = await moviesService.getMovieById(id);
     if (!movie) {
       return res.status(404).json({ error: "Movie not found" });
     }

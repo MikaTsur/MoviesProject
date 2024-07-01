@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import SubscribeMovieForm from "./SubscribeMovieForm";
 import axios from "axios";
 import "../styles/SubscriptionStyles.css";
@@ -59,7 +59,10 @@ const Subscription = ({ subscription, onDelete, onAddMovie }) => {
               )
               .map((movie) => (
                 <li key={movie.movieId ? movie.movieId._id : movie._id}>
-                  {movie.movieId ? movie.movieId.name : "Unknown"}, {movie.date}
+                  <Link to={`/movies/${movie.movieId._id}`}>
+                    {movie.movieId.name}
+                  </Link>
+                  , {movie.date}
                 </li>
               ))}
           </ul>

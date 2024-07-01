@@ -1,5 +1,3 @@
-//C:\Users\morellyo\react_project\ex\client\src\App.jsx
-
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Movies from "./pages/Movies";
@@ -10,8 +8,9 @@ import UpperLevelButtons from "./components/UpperLevelButtons";
 import Subscriptions from "./pages/Subscriptions";
 import AddSubscriptionForm from "./pages/AddSubscriptionForm";
 import EditSubscription from "./pages/EditSubscription";
+import Subscriber from "./pages/Subscriber"; // Import Subscriber component
+import MovieDetail from "./pages/MovieDetail"; // Import MovieDetail component
 import LoginPage from "./pages/LoginPage";
-import Subscriber from "./pages/Subscriber";
 
 const PrivateRoute = ({ element, ...rest }) => {
   const isAuthenticated = !!localStorage.getItem("token");
@@ -51,6 +50,11 @@ const App = () => {
           path="/subscriptions/:id"
           element={<PrivateRoute element={<Subscriber />} />}
         />
+        <Route
+          path="/movies/:id"
+          element={<PrivateRoute element={<MovieDetail />} />}
+        />{" "}
+        {/* Added this line */}
       </Routes>
     </>
   );
