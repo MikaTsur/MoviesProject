@@ -53,11 +53,15 @@ const Subscription = ({ subscription, onDelete, onAddMovie }) => {
         <div className="movies-watched-frame">
           <h4>Movies Watched</h4>
           <ul className="movies-list">
-            {moviesWatched.map((movie) => (
-              <li key={movie.movieId ? movie.movieId._id : movie._id}>
-                {movie.movieId ? movie.movieId.name : "Unknown"}, {movie.date}
-              </li>
-            ))}
+            {moviesWatched
+              .filter(
+                (movie) => movie.movieId && movie.movieId.name !== "Unknown"
+              )
+              .map((movie) => (
+                <li key={movie.movieId ? movie.movieId._id : movie._id}>
+                  {movie.movieId ? movie.movieId.name : "Unknown"}, {movie.date}
+                </li>
+              ))}
           </ul>
           <button className="button" onClick={() => setShowForm(!showForm)}>
             Subscribe to a new movie

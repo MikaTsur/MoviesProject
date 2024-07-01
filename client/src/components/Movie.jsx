@@ -85,10 +85,14 @@ const Movie = ({ movie, onDelete }) => {
               const movieWatched = sub.moviesWatched.find(
                 (m) => m.movieId && m.movieId._id === movie._id
               );
+              // Check if the movie is not "Unknown" before rendering
+              if (!movieWatched || movieWatched.movieId.name === "Unknown") {
+                return null;
+              }
               return (
                 <li key={sub._id}>
                   <Link to={`/subscriptions/${sub._id}`}>{sub.fullname}</Link>,{" "}
-                  {movieWatched ? movieWatched.date : "N/A"}
+                  {movieWatched.date}
                 </li>
               );
             })}
