@@ -3,10 +3,16 @@ const express = require("express");
 const moviesService = require("../services/moviesService");
 const router = express.Router();
 
-// GET endpoint to retrieve all movies from MongoDB
+// GET endpoint to retrieve all movies or search movies by name
 router.get("/", async (req, res) => {
   try {
-    const movies = await moviesService.getMovies();
+    const { search } = req.query;
+    let movies;
+    if (search) {
+      movies = await moviesService.searchMovies(search);
+    } else {
+      movies = await moviesService.getMovies();
+    }
     res.status(200).json(movies);
   } catch (error) {
     console.error("Error retrieving movies:", error);

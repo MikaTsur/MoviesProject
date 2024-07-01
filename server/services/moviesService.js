@@ -11,6 +11,17 @@ const getMovies = async () => {
   }
 };
 
+const searchMovies = async (searchTerm) => {
+  try {
+    const movies = await Movie.find({
+      name: { $regex: searchTerm, $options: "i" },
+    });
+    return movies;
+  } catch (error) {
+    throw error;
+  }
+};
+
 const getMovieById = async (id) => {
   try {
     const movie = await Movie.findById(id);
@@ -59,4 +70,5 @@ module.exports = {
   addMovie,
   deleteMovie,
   updateMovie,
+  searchMovies,
 };
