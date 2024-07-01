@@ -11,6 +11,7 @@ import Subscriptions from "./pages/Subscriptions";
 import AddSubscriptionForm from "./pages/AddSubscriptionForm";
 import EditSubscription from "./pages/EditSubscription";
 import LoginPage from "./pages/LoginPage";
+import Subscriber from "./pages/Subscriber";
 
 const PrivateRoute = ({ element, ...rest }) => {
   const isAuthenticated = !!localStorage.getItem("token");
@@ -45,6 +46,10 @@ const App = () => {
         <Route
           path="/edit-subscription/:id"
           element={<PrivateRoute element={<EditSubscription />} />}
+        />
+        <Route
+          path="/subscriptions/:id"
+          element={<PrivateRoute element={<Subscriber />} />}
         />
       </Routes>
     </>
