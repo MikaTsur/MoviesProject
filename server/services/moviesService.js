@@ -1,5 +1,6 @@
 //C:\Users\morellyo\react_project\ex\server\services\moviesService.js  ========================
 const Movie = require("../models/movieModel");
+const Subscription = require("../models/subscriptionModel");
 
 const getMovies = async () => {
   try {
@@ -23,6 +24,10 @@ const addMovie = async (movieData) => {
 const deleteMovie = async (id) => {
   try {
     await Movie.findByIdAndDelete(id);
+    await Subscription.updateMany(
+      { "moviesWatched.movieId": id },
+      { $pull: { moviesWatched: { movieId: id } } }
+    );
   } catch (error) {
     throw error;
   }

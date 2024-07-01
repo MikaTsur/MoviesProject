@@ -1,14 +1,12 @@
 // C:\Users\morellyo\react_project\ex\server\controllers\moviesController.js  ========================
 const express = require("express");
-const moviesService = require("../services/subscriptionsService");
-const Movie = require("../models/movieModel");
-
+const moviesService = require("../services/moviesService");
 const router = express.Router();
 
 // GET endpoint to retrieve all movies from MongoDB
 router.get("/", async (req, res) => {
   try {
-    const movies = await Movie.find();
+    const movies = await moviesService.getMovies();
     res.status(200).json(movies);
   } catch (error) {
     console.error("Error retrieving movies:", error);
@@ -25,16 +23,8 @@ router.post("/", async (req, res) => {
       return res.status(400).json({ error: "All fields are required" });
     }
 
-    // Create a new Movie object based on the Mongoose schema
-    const newMovie = new Movie({
-      name,
-      genres,
-      image,
-      premierd: parseInt(premierd), // Convert premierd to a Number
-    });
-
-    // Save the new movie to the database
-    const savedMovie = await newMovie.save();
+    const newMovie = { name, genres, image, premierd: parseInt(premierd) };
+    const savedMovie = await moviesService.addMovie(newMovie);
 
     res.status(200).json(savedMovie); // Respond with the saved movie document
   } catch (error) {
@@ -43,12 +33,18 @@ router.post("/", async (req, res) => {
   }
 });
 
-// DELETE endpoint to remove a movie by ID
+// DELETE endpoint to remove a movie by ID and update subscriptions
 router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    await Movie.findByIdAndDelete(id);
-    res.status(200).json({ message: "Movie deleted successfully" });
+
+    await moviesService.deleteMovie(id);
+
+    res
+      .status(200)
+      .json({
+        message: "Movie and related subscriptions updated successfully",
+      });
   } catch (error) {
     console.error("Error deleting movie:", error);
     res.status(500).json({ error: "Failed to delete movie" });
@@ -65,17 +61,14 @@ router.put("/:id", async (req, res) => {
       return res.status(400).json({ error: "All fields are required" });
     }
 
-    const updatedMovie = await Movie.findByIdAndUpdate(
-      id,
-      { name, genres, image, premierd: parseInt(premierd) },
-      { new: true }
-    );
+    const updatedMovie = { name, genres, image, premierd: parseInt(premierd) };
+    const movie = await moviesService.updateMovie(id, updatedMovie);
 
-    if (!updatedMovie) {
+    if (!movie) {
       return res.status(404).json({ error: "Movie not found" });
     }
 
-    res.status(200).json(updatedMovie);
+    res.status(200).json(movie);
   } catch (error) {
     console.error("Error updating movie:", error);
     res.status(500).json({ error: "Failed to update movie" });
@@ -86,7 +79,7 @@ router.put("/:id", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const movie = await Movie.findById(id);
+    const movie = await moviesService.getMovies(id);
     if (!movie) {
       return res.status(404).json({ error: "Movie not found" });
     }

@@ -1,11 +1,11 @@
 //C:\Users\morellyo\react_project\ex\server\controllers\subscriptionsController.js ===== Mika test
-// module.exports = router;
 const express = require("express");
 const Subscription = require("../models/subscriptionModel");
 const Movie = require("../models/movieModel");
 
 const router = express.Router();
 
+// GET endpoint to retrieve all subscriptions from MongoDB
 router.get("/", async (req, res) => {
   try {
     const subscriptions = await Subscription.find().populate(
@@ -27,17 +27,10 @@ router.post("/", async (req, res) => {
       return res.status(400).json({ error: "All fields are required" });
     }
 
-    // Create a new Subscription object based on the Mongoose schema
-    const newSubscription = new Subscription({
-      fullname,
-      email,
-      city,
-    });
-
-    // Save the new Subscription to the database
+    const newSubscription = new Subscription({ fullname, email, city });
     const savedSubscription = await newSubscription.save();
 
-    res.status(200).json(savedSubscription); // Respond with the saved subscription document
+    res.status(200).json(savedSubscription);
   } catch (error) {
     console.error("Error adding subscription:", error);
     res.status(500).json({ error: "Failed to add subscription" });
@@ -77,7 +70,6 @@ router.put("/:id", async (req, res) => {
     }
 
     res.status(200).json(updatedSubscription);
-    x;
   } catch (error) {
     console.error("Error updating subscription:", error);
     res.status(500).json({ error: "Failed to update subscription" });
@@ -119,25 +111,14 @@ router.post("/:id/add-movie", async (req, res) => {
       return res.status(404).json({ error: "Movie not found" });
     }
 
-    console.log(
-      `Adding movie to subscription: subscriptionId=${id}, movieId=${movieId}, date=${date}`
-    );
-
     const subscription = await Subscription.findById(id);
     if (!subscription) {
       return res.status(404).json({ error: "Subscription not found" });
     }
 
     subscription.moviesWatched.push({ movieId, date });
-
-    console.log("Subscription before saving:", subscription);
-
     await subscription.save();
-
-    // Populate the movieId field after saving
     await subscription.populate("moviesWatched.movieId").execPopulate();
-
-    console.log("Subscription after populating:", subscription);
 
     res.status(200).json(subscription);
   } catch (error) {

@@ -49,7 +49,7 @@ const Movies = () => {
     try {
       await axios.delete(`${MOVIE_URL}/${id}`);
       dispatch(doRemoveMovie(id));
-      fetchData();
+      fetchData(); // Refresh the list of movies
     } catch (error) {
       console.error("Error deleting movie:", error);
     }

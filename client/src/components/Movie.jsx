@@ -32,6 +32,18 @@ const Movie = ({ movie, onDelete }) => {
     navigate(`/edit-movie/${movie._id}`);
   };
 
+  const handleDelete = async () => {
+    await onDelete(movie._id);
+    // Refetch subscribers to reflect changes
+    const { data } = await axios.get(`http://localhost:3011/subscriptions`);
+    const movieSubscribers = data.filter((subscription) =>
+      subscription.moviesWatched.some(
+        (m) => m.movieId && m.movieId._id === movie._id
+      )
+    );
+    setSubscribers(movieSubscribers);
+  };
+
   return (
     <div className="rectangle">
       <div className="container">
@@ -62,7 +74,7 @@ const Movie = ({ movie, onDelete }) => {
           >
             Edit
           </button>
-          <button className="button" onClick={() => onDelete(movie._id)}>
+          <button className="button" onClick={handleDelete}>
             Delete
           </button>
         </div>
