@@ -1,4 +1,4 @@
-// C:\Users\morellyo\react_project\ex\client\src\redux\actions.js
+// C:\Users\morellyo\react_project\ex\client\src\redux\actions.js ==
 
 // Movie actions
 const doRemoveMovie = (id) => {

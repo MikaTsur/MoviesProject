@@ -5,6 +5,17 @@ import SubscribeMovieForm from "../components/SubscribeMovieForm";
 import "../styles/SubscriptionStyles.css";
 import SubscriptionsHeaderButtons from "../components/SubscriptionsHeaderButtons";
 
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) {
+    return "Invalid Date";
+  }
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-based
+  const year = date.getFullYear();
+  return `${day}/${month}/${year}`;
+};
+
 const Subscriber = () => {
   const { id } = useParams();
   const [subscriber, setSubscriber] = useState(null);
@@ -73,7 +84,8 @@ const Subscriber = () => {
             <ul className="movies-list">
               {subscriber.moviesWatched.map((movie) => (
                 <li key={movie.movieId ? movie.movieId._id : movie._id}>
-                  {movie.movieId ? movie.movieId.name : "Unknown"}, {movie.date}
+                  {movie.movieId ? movie.movieId.name : "Unknown"},{" "}
+                  {formatDate(movie.date)}
                 </li>
               ))}
             </ul>
