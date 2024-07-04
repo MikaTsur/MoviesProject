@@ -1,3 +1,5 @@
+//C:\Users\morellyo\react_project\ex\client\src\pages\Subscriptions.jsx==
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Subscription from "../components/Subscription";

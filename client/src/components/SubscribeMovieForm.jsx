@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import "../styles/SubscriptionStyles.css";
 import SubscriptionsList from "./SubscriptionsList"; // <-- Import SubscriptionsList component
 
-const SubscribeMovieForm = ({ subscriptionId, onAddMovie }) => {
+const SubscribeMovieForm = ({ subscriptionId, onAddMovie, moviesWatched }) => {
+  // <-- Add moviesWatched as a prop
   const [movies, setMovies] = useState([]);
   const [selectedMovieId, setSelectedMovieId] = useState("");
   const [date, setDate] = useState("");
@@ -15,14 +16,19 @@ const SubscribeMovieForm = ({ subscriptionId, onAddMovie }) => {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const response = await axios.get("http://localhost:3011/movies");
+        const excludeIds = moviesWatched
+          .map((movie) => movie.movieId._id)
+          .join(",");
+        const response = await axios.get(
+          `http://localhost:3011/movies?exclude=${excludeIds}`
+        );
         setMovies(response.data);
       } catch (error) {
         console.error("Error fetching movies:", error);
       }
     };
     fetchMovies();
-  }, []);
+  }, [moviesWatched]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();

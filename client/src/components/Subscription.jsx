@@ -4,7 +4,6 @@ import SubscribeMovieForm from "./SubscribeMovieForm";
 import axios from "axios";
 import "../styles/SubscriptionStyles.css";
 
-// Date formatting and validation function
 const formatDate = (dateString) => {
   const date = new Date(dateString);
   if (isNaN(date.getTime())) {

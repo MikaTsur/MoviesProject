@@ -3,16 +3,26 @@ const express = require("express");
 const moviesService = require("../services/moviesService");
 const router = express.Router();
 
-// GET endpoint to retrieve all movies or search movies by name
+// C:\Users\morellyo\react_project\ex\server\controllers\moviesController.js
+
 router.get("/", async (req, res) => {
   try {
-    const { search } = req.query;
+    const { search, exclude } = req.query;
     let movies;
+    const excludeIds = exclude ? exclude.split(",") : [];
+
     if (search) {
       movies = await moviesService.searchMovies(search);
     } else {
       movies = await moviesService.getMovies();
     }
+
+    if (excludeIds.length > 0) {
+      movies = movies.filter(
+        (movie) => !excludeIds.includes(movie._id.toString())
+      );
+    }
+
     res.status(200).json(movies);
   } catch (error) {
     console.error("Error retrieving movies:", error);
