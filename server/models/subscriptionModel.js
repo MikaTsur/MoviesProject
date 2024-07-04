@@ -1,5 +1,3 @@
-// C:\Users\morellyo\react_project\ex\server\models\subscriptionModel.js
-
 const mongoose = require("mongoose");
 
 const subscriptionSchema = new mongoose.Schema(

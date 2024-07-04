@@ -1,4 +1,3 @@
-// C:\Users\morellyo\react_project\ex\server\models\movieModel.js ========================
 const mongoose = require("mongoose");
 
 const movieSchema = new mongoose.Schema(

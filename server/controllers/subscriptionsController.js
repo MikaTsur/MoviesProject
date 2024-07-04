@@ -1,4 +1,3 @@
-//C:\Users\morellyo\react_project\ex\server\controllers\subscriptionsController.js =====
 const express = require("express");
 const Subscription = require("../models/subscriptionModel");
 const Movie = require("../models/movieModel");
@@ -102,25 +101,34 @@ router.post("/:id/add-movie", async (req, res) => {
     const { id } = req.params;
     const { movieId, date } = req.body;
 
+    console.log("Received movieId:", movieId);
+    console.log("Received date:", date);
+
     if (!movieId || !date) {
       return res.status(400).json({ error: "Movie ID and date are required" });
     }
 
     const movie = await Movie.findById(movieId);
     if (!movie) {
+      console.error("Movie not found for ID:", movieId);
       return res.status(404).json({ error: "Movie not found" });
     }
 
     const subscription = await Subscription.findById(id);
     if (!subscription) {
+      console.error("Subscription not found for ID:", id);
       return res.status(404).json({ error: "Subscription not found" });
     }
 
     subscription.moviesWatched.push({ movieId, date });
     await subscription.save();
-    await subscription.populate("moviesWatched.movieId").execPopulate();
 
-    res.status(200).json(subscription);
+    // Populate moviesWatched after saving
+    const populatedSubscription = await Subscription.findById(id).populate(
+      "moviesWatched.movieId"
+    );
+
+    res.status(200).json(populatedSubscription);
   } catch (error) {
     console.error("Error adding movie to subscription:", error);
     res.status(500).json({ error: "Failed to add movie to subscription" });
