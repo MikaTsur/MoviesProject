@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Movies from "./pages/Movies";
 import AddMovie from "./pages/AddMovie";
 import EditMovie from "./pages/EditMovie";
@@ -18,9 +18,11 @@ const PrivateRoute = ({ element, ...rest }) => {
 };
 
 const App = () => {
+  const location = useLocation();
+
   return (
     <>
-      <UpperLevelButtons />
+      {location.pathname !== "/login" && <UpperLevelButtons />}
       <h1>Movies - Subscriptions Web Site</h1>
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
