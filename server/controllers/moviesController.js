@@ -1,9 +1,7 @@
-// C:\Users\morellyo\react_project\ex\server\controllers\moviesController.js
+// C:\Users\morellyo\react_project\ex\server\controllers\moviesController.js====
 const express = require("express");
 const moviesService = require("../services/moviesService");
 const router = express.Router();
-
-// C:\Users\morellyo\react_project\ex\server\controllers\moviesController.js
 
 router.get("/", async (req, res) => {
   try {

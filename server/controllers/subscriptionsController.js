@@ -1,15 +1,21 @@
 const express = require("express");
 const Subscription = require("../models/subscriptionModel");
 const Movie = require("../models/movieModel");
-
 const router = express.Router();
+const subscriptionsService = require("../services/subscriptionsService");
 
 // GET endpoint to retrieve all subscriptions from MongoDB
 router.get("/", async (req, res) => {
   try {
-    const subscriptions = await Subscription.find().populate(
-      "moviesWatched.movieId"
-    );
+    const { search } = req.query;
+    let subscriptions;
+
+    if (search) {
+      subscriptions = await subscriptionsService.searchSubscriptions(search);
+    } else {
+      subscriptions = await subscriptionsService.getSubscriptions();
+    }
+
     res.status(200).json(subscriptions);
   } catch (error) {
     console.error("Error retrieving subscriptions:", error);

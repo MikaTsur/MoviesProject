@@ -1,9 +1,22 @@
-//C:\Users\morellyo\react_project\ex\server\services\moviesService.js  ========================
 const Subscription = require("../models/subscriptionModel");
 
 const getSubscriptions = async () => {
   try {
-    const subscriptions = await Subscription.find();
+    const subscriptions = await Subscription.find().populate(
+      "moviesWatched.movieId"
+    );
+    return subscriptions;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const searchSubscriptions = async (searchTerm) => {
+  try {
+    const regex = new RegExp(searchTerm, "i"); // Case-insensitive search
+    const subscriptions = await Subscription.find({
+      $or: [{ fullname: regex }, { email: regex }, { city: regex }],
+    }).populate("moviesWatched.movieId");
     return subscriptions;
   } catch (error) {
     throw error;
@@ -45,6 +58,7 @@ const updateSubscription = async (id, subscriptionData) => {
 
 module.exports = {
   getSubscriptions,
+  searchSubscriptions,
   addSubscription,
   deleteSubscription,
   updateSubscription,
