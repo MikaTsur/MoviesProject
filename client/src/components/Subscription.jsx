@@ -1,7 +1,8 @@
+//C:\Users\morellyo\react_project\ex\client\src\pages\Subscriber.jsx
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import SubscribeMovieForm from "./SubscribeMovieForm";
 import axios from "axios";
+import SubscribeButton from "../components/SubscribeButton";
 import "../styles/SubscriptionStyles.css";
 
 const formatDate = (dateString) => {
@@ -17,7 +18,6 @@ const formatDate = (dateString) => {
 
 const Subscription = ({ subscription, onDelete }) => {
   const navigate = useNavigate();
-  const [showForm, setShowForm] = useState(false);
   const [moviesWatched, setMoviesWatched] = useState(
     subscription.moviesWatched || []
   );
@@ -46,7 +46,6 @@ const Subscription = ({ subscription, onDelete }) => {
 
   const handleAddMovie = () => {
     fetchUpdatedSubscription();
-    setShowForm(false);
   };
 
   useEffect(() => {
@@ -101,16 +100,11 @@ const Subscription = ({ subscription, onDelete }) => {
                 </li>
               ))}
           </ul>
-          <button className="button" onClick={() => setShowForm(!showForm)}>
-            Subscribe to a new movie
-          </button>
-          {showForm && (
-            <SubscribeMovieForm
-              subscriptionId={subscription._id}
-              onAddMovie={handleAddMovie}
-              moviesWatched={moviesWatched} // Pass watched movies to filter
-            />
-          )}
+          <SubscribeButton
+            subscriptionId={subscription._id}
+            onAddMovie={handleAddMovie}
+            moviesWatched={moviesWatched}
+          />
         </div>
       </div>
     </div>

@@ -6,6 +6,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import SubscribeMovieForm from "../components/SubscribeMovieForm";
 import "../styles/SubscriptionStyles.css";
 import SubscriptionsHeaderButtons from "../components/SubscriptionsHeaderButtons";
+import SubscribeButton from "../components/SubscribeButton";
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -91,15 +92,11 @@ const Subscriber = () => {
                 </li>
               ))}
             </ul>
-            <button className="button" onClick={() => setShowForm(!showForm)}>
-              Subscribe to a new movie
-            </button>
-            {showForm && (
-              <SubscribeMovieForm
-                subscriptionId={subscriber._id}
-                onAddMovie={handleAddMovie}
-              />
-            )}
+            <SubscribeButton
+              subscriptionId={subscriber._id}
+              onAddMovie={handleAddMovie}
+              moviesWatched={subscriber.moviesWatched}
+            />
           </div>
         </div>
       </div>
