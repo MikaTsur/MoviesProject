@@ -5,7 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import "../styles/SubscriptionStyles.css";
 
-const SingleMovieBox = ({ movie, onDelete, isDetailPage = false }) => {
+const SingleMovieBox = ({ movie, onDelete }) => {
   const [subscribers, setSubscribers] = useState([]);
   const navigate = useNavigate();
 
@@ -78,11 +78,9 @@ const SingleMovieBox = ({ movie, onDelete, isDetailPage = false }) => {
           >
             Edit
           </button>
-          {!isDetailPage && (
-            <button className="button" onClick={handleDelete}>
-              Delete
-            </button>
-          )}
+          <button className="button" onClick={handleDelete}>
+            Delete
+          </button>
         </div>
         <div className="movies-watched-frame">
           <h4>Subscribers</h4>

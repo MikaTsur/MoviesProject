@@ -29,7 +29,7 @@ const MovieDetail = () => {
   if (loading) return <div>Loading...</div>;
   if (!movie) return <div>Movie not found.</div>;
 
-  return <SingleMovieBox movie={movie} isDetailPage />;
+  return <SingleMovieBox movie={movie} />;
 };
 
 export default MovieDetail;
